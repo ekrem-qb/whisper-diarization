@@ -461,20 +461,12 @@ def get_sentences_speaker_mapping(word_speaker_mapping, spk_ts):
 
 
 def get_speaker_aware_transcript(sentences_speaker_mapping, f):
-    previous_speaker = sentences_speaker_mapping[0]["speaker"]
-    f.write(f"{previous_speaker}: ")
-
     for sentence_dict in sentences_speaker_mapping:
         speaker = sentence_dict["speaker"]
         sentence = sentence_dict["text"]
+        time = sentence_dict["start_time"]
 
-        # If this speaker doesn't match the previous one, start a new paragraph
-        if speaker != previous_speaker:
-            f.write(f"\n\n{speaker}: ")
-            previous_speaker = speaker
-
-        # No matter what, write the current sentence
-        f.write(sentence + " ")
+        f.write(f"{time}\n{speaker}\n{sentence}\n")
 
 
 def format_timestamp(
