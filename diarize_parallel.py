@@ -247,7 +247,4 @@ ssm = get_sentences_speaker_mapping(wsm, speaker_ts)
 with open(f"{os.path.splitext(args.audio)[0]}.txt", "w", encoding="utf-8-sig") as f:
     get_speaker_aware_transcript(ssm, f)
 
-with open(f"{os.path.splitext(args.audio)[0]}.srt", "w", encoding="utf-8-sig") as srt:
-    write_srt(ssm, srt)
-
 cleanup(temp_path)
